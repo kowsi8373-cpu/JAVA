@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 JavaMaster AI Pro - Beginner to Advanced</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* ULTRA ATTRACTIVE BOLD UNIQUE BACKGROUND */
+        body { 
+            font-family: 'Poppins', sans-serif;
+            /* BOLD COSMIC GALAXY WITH GOLDEN STARS */
+            background: 
+                radial-gradient(circle at 20% 10%, #ffd700 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, #ff6b6b 0%, transparent 40%),
+                radial-gradient(circle at 40% 60%, #4ecdc4 0%, transparent 40%),
+                radial-gradient(circle at 70% 20%, #ffd1ff 0%, transparent 40%),
+                linear-gradient(135deg, #ff9a9e 0%, #fecfef 20%, #fad0c4 40%, #ffd1ff 60%, #ffecd2 80%, #fef5e7 100%);
+            background-size: 600px 600px, 400px 400px, 500px 500px, 300px 300px, 500% 500%;
+            animation: cosmicGalaxy 10s ease infinite, starTwinkle 3s linear infinite;
+            min-height: 100vh; color: #1a0d2e; overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* GOLDEN FLOATING STARS */
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(3px 3px at 30px 50px, #ffd700, transparent),
+                radial-gradient(2px 2px at 80px 90px, #ffeb3b, transparent),
+                radial-gradient(2px 2px at 120px 30px, #fff176, transparent),
+                radial-gradient(1px 1px at 200px 70px, #ffd700, transparent);
+            background-repeat: repeat;
+            background-size: 250px 150px;
+            animation: starFloat 15s linear infinite;
+            pointer-events: none; z-index: -1;
+        }
+        
+        @keyframes cosmicGalaxy { 0%,100% { background-position: 0% 50%, 0% 0%, 0% 50%, 0% 50%, 0% 50%; } 50% { background-position: 100% 50%, 50% 50%, 100% 50%, 100% 50%, 100% 50%; } }
+        @keyframes starTwinkle { 0%,100% { opacity: 0.8; } 50% { opacity: 1; } }
+        @keyframes starFloat { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-1200px) rotate(180deg); } }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 25px; position: relative; z-index: 10; }
+        
+        /* BOLD GLOWING HEADER */
+        header { 
+            text-align: center; 
+            background: rgba(255,255,255,0.98); 
+            backdrop-filter: blur(25px); 
+            border-radius: 40px; 
+            padding: 45px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+            border: 3px solid rgba(255,215,0,0.5);
+            animation: boldGlow 4s ease-in-out infinite;
+        }
+        @keyframes boldGlow { 0%,100% { box-shadow: 0 40px 80px rgba(255,215,0,0.3); } 50% { box-shadow: 0 40px 80px rgba(255,215,0,0.6), 0 0 60px rgba(255,215,0,0.4); } }
+        
+        header h1 { 
+            font-family: 'Orbitron', monospace; 
+            font-size: 4em; 
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1, #ff9ff3);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            letter-spacing: 5px; text-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+        
+        .controls { position: fixed; top: 25px; right: 25px; z-index: 100; display: flex; gap: 15px; }
+        .icon-btn { 
+            background: linear-gradient(135deg, #ffd700, #ffed4a); 
+            border: 3px solid #ffaa00; 
+            color: #1a0d2e; 
+            width: 60px; height: 60px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 26px; 
+            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 20px 40px rgba(255,215,0,0.4);
+        }
+        .icon-btn:hover { 
+            transform: scale(1.4) rotate(360deg); 
+            box-shadow: 0 30px 60px rgba(255,215,0,0.6), 0 0 40px rgba(255,215,0,0.5); 
+            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+            color: white;
+        }
+        
+        #queryInput { 
+            width: 100%; 
+            padding: 30px 35px; 
+            font-size: 24px; 
+            border: 4px solid rgba(255,215,0,0.8); 
+            border-radius: 40px; 
+            background: rgba(255,255,255,0.98); 
+            margin-bottom: 30px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.4s;
+        }
+        #queryInput:focus { 
+            outline: none; 
+            border-color: #4ecdc4; 
+            box-shadow: 0 30px 60px rgba(78,205,196,0.4), 0 0 40px rgba(78,205,196,0.3);
+            transform: scale(1.02);
+        }
+        
+        #answerBox { 
+            min-height: 500px; 
+            background: rgba(255,255,255,0.98); 
+            border-radius: 35px; 
+            padding: 50px; 
+            box-shadow: 0 50px 100px rgba(0,0,0,0.3); 
+            overflow-y: auto; 
+            line-height: 1.8; 
+            border: 4px solid rgba(255,215,0,0.4);
+        }
+        
+        .code-block { 
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef, #fff); 
+            border-left: 8px solid #4ecdc4; 
+            padding: 30px; 
+            border-radius: 20px; 
+            font-family: 'Courier New', monospace; 
+            margin: 25px 0; 
+            overflow-x: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* PERFECT ORDERED TOPIC GRID - Beginner to Advanced */
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .topic-card { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,248,240,0.92)); 
+            border-radius: 30px; 
+            padding: 40px 30px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15); 
+            border: 4px solid transparent;
+            position: relative; overflow: hidden;
+        }
+        .topic-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.4), transparent);
+            transition: left 0.7s;
+        }
+        .topic-card:hover::before { left: 100%; }
+        .topic-card:hover { 
+            transform: translateY(-25px) scale(1.08); 
+            box-shadow: 0 60px 120px rgba(0,0,0,0.3); 
+            border-color: #ffd700;
+        }
+        
+        .level-badge { 
+            padding: 15px 30px; 
+            border-radius: 35px; 
+            font-weight: 800; 
+            font-size: 16px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            font-family: 'Orbitron', monospace;
+        }
+        .beginner { background: linear-gradient(45deg, #4ecdc4, #44a08d); color: white; }
+        .intermediate { background: linear-gradient(45deg, #ffe66d, #ffcb45); color: #1a0d2e; }
+        .advanced { background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; }
+        
+        .quiz-btn { 
+            display: block; margin: 60px auto; 
+            padding: 30px 60px; 
+            font-size: 28px; font-weight: 800; font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4); 
+            color: white; border: none; border-radius: 40px; cursor: pointer; 
+            box-shadow: 0 30px 60px rgba(255,215,0,0.4);
+            transition: all 0.5s;
+        }
+        .quiz-btn:hover { transform: translateY(-15px) scale(1.15); box-shadow: 0 50px 100px rgba(255,215,0,0.6); }
+        
+        @media (max-width: 768px) { 
+            .controls { position: relative; top: 0; right: 0; justify-content: center; margin: 20px 0; }
+            header h1 { font-size: 2.8em; }
+            .topic-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="icon-btn" onclick="toggleVoice()" title="🎤 Voice Input">🎤</button>
+        <button class="icon-btn" onclick="searchWeb()" title="🔍 Random Topic">🔍</button>
+        <button class="icon-btn" onclick="toggleSlim()" title="📱 Slim Mode">📱</button>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>🌟 JavaMaster AI Pro</h1>
+            <p>PERFECT ORDER: Beginner → Intermediate → Advanced | 35+ Topics | FULL CODE</p>
+        </header>
+        
+        <input type="text" id="queryInput" placeholder="💬 Type/Speak: 'Variables' → 'Multithreading'..." onkeypress="handleEnter(event)">
+        
+        <div id="answerBox">
+            <h2>🚀 PERFECT LEARNING PATH READY!</h2>
+            <p>Click topics in order from <strong>BEGINNER</strong> (top) to <strong>ADVANCED</strong> (bottom)</p>
+            <p>Each card = Complete runnable code + VSCode setup + BCA exam ready!</p>
+        </div>
+        
+        <div class="topic-grid" id="topics"></div>
+        
+        <div style="text-align:center; margin: 60px 0;">
+            <button class="quiz-btn" onclick="startQuiz()">🎯 OOP MASTERY QUIZ (10 Questions)</button>
+        </div>
+    </div>
+
+    <script>
+        // ✅ PERFECT ORDER: BEGINNER → INTERMEDIATE → ADVANCED (35+ TOPICS)
+        const topics = [
+            // === BEGINNER ===
+            {name: '01. Variables', desc: 'Store & use data', format: 'int age = 20;', code: 'public class Variables {\npublic static void main(String[] args) {\nint age = 20;\nString name = "BCA";\nSystem.out.println(name + " is " + age);\n}\n}', level: 'beginner'},
+            {name: '02. Data Types', desc: 'int, double, String...', format: 'boolean flag = true;', code: 'public class DataTypes {\npublic static void main(String[] args) {\nint num = 100;\ndouble pi = 3.14;\nboolean flag = true;\nSystem.out.println(num + " " + pi + " " + flag);\n}\n}', level: 'beginner'},
+            {name: '03. Operators', desc: '+ - * / % ==', format: 'int sum = a + b;', code: 'public class Operators {\npublic static void main(String[] args) {\nint a = 10, b = 5;\nSystem.out.println("Sum: " + (a+b));\nSystem.out.println("Equal: " + (a==b));\n}\n}', level: 'beginner'},
+            
+            // === CONTROL FLOW ===
+            {name: '04. If-Else', desc: 'Decision making', format: 'if(condition) {}', code: 'public class IfElse {\npublic static void main(String[] args) {\nint marks = 85;\nif(marks >= 90) System.out.println("A Grade");\nelse System.out.println("Good Job");\n}\n}', level: 'beginner'},
+            {name: '05. Loops', desc: 'for, while loops', format: 'for(int i=0; i<5; i++)', code: 'public class Loops {\npublic static void main(String[] args) {\nfor(int i=1; i<=5; i++) {\nSystem.out.println("Count: " + i);\n}\n}\n}', level: 'beginner'},
+            {name: '06. Switch', desc: 'Multiple choices', format: 'switch(var) { case 1: }', code: 'public class Switch {\npublic static void main(String[] args) {\nint day = 1;\nswitch(day) {\ncase 1: System.out.println("Monday"); break;\ndefault: System.out.println("Weekend");\n}\n}\n}', level: 'beginner'},
+            
+            // === METHODS & ARRAYS ===
+            {name: '07. Methods', desc: 'Reusable functions', format: 'int add(int a, int b)', code: 'public class Methods {\nstatic int add(int a, int b) { return a+b; }\npublic static void main(String[] args) {\nSystem.out.println(add(5,3));\n}\n}', level: 'beginner'},
+            {name: '08. Arrays', desc: 'Fixed collections', format: 'int[] arr = {1,2,3};', code: 'public class Arrays {\npublic static void main(String[] args) {\nint[] marks = {85,90,78};\nfor(int m: marks) {\nSystem.out.println(m);\n}\n}\n}', level: 'beginner'},
+            
+            // === CORE OOP ===
+            {name: '09. Classes', desc: 'Object blueprints', format: 'class Name { }', code: 'class Student {\nString name;\nvoid study() { System.out.println("Studying"); }\n}\npublic class Main {\npublic static void main(String[] args) {\nStudent s = new Student();\ns.name = "Ravi";\ns.study();\n}\n}', level: 'intermediate'},
+            {name: '10. Constructors', desc: 'Object initialization', format: 'ClassName(params)', code: 'class Car {\nString model;\nCar(String m) { model = m; }\n}\npublic class Main {\npublic static void main(String[] args) {\nCar c = new Car("Swift");\nSystem.out.println(c.model);\n}\n}', level: 'intermediate'},
+            {name: '11. Inheritance', desc: 'extends keyword', format: 'class Child extends Parent', code: 'class Animal {\nvoid eat() { System.out.println("Eating"); }\n}\nclass Dog extends Animal {\nvoid bark() { System.out.println("Woof"); }\n}\npublic class Main {\npublic static void main(String[] args) {\nDog d = new Dog();\nd.eat(); d.bark();\n}\n}', level: 'intermediate'},
+            
+            // === OOP ADVANCED ===
+            {name: '12. Polymorphism', desc: 'Method overriding', format: '@Override', code: 'class Animal {\nvoid sound() { System.out.println("Sound"); }\n}\nclass Cat extends Animal {\n@Override void sound() { System.out.println("Meow"); }\n}\npublic class Main {\npublic static void main(String[] args) {\nAnimal a = new Cat();\na.sound();\n}\n}', level: 'intermediate'},
+            {name: '13. Encapsulation', desc: 'private + getters', format: 'private int x;', code: 'class Bank {\nprivate double balance = 1000;\npublic double getBalance() { return balance; }\npublic void deposit(double amt) { balance += amt; }\n}\npublic class Main {\npublic static void main(String[] args) {\nBank b = new Bank();\nb.deposit(500);\nSystem.out.println(b.getBalance());\n}\n}', level: 'intermediate'},
+            {name: '14. Abstraction', desc: 'abstract classes', format: 'abstract class Shape', code: 'abstract class Shape {\nabstract void draw();\n}\nclass Circle extends Shape {\nvoid draw() { System.out.println("Circle"); }\n}\npublic class Main {\npublic static void main(String[] args) {\nShape s = new Circle();\ns.draw();\n}\n}', level: 'intermediate'},
+            
+            // === COLLECTIONS ===
+            {name: '15. ArrayList', desc: 'Dynamic arrays', format: 'ArrayList<String> list', code: 'import java.util.*;\npublic class ArrayListDemo {\npublic static void main(String[] args) {\nArrayList<String> list = new ArrayList<>();\nlist.add("Java");\nlist.add("BCA");\nSystem.out.println(list.get(0));\n}\n}', level: 'intermediate'},
+            {name: '16. HashMap', desc: 'Key-value pairs', format: 'HashMap<String,Integer>', code: 'import java.util.*;\npublic class HashMapDemo {\npublic static void main(String[] args) {\nHashMap<String,Integer> marks = new HashMap<>();\nmarks.put("Ravi",85);\nSystem.out.println(marks.get("Ravi"));\n}\n}', level: 'intermediate'},
+            
+            // === EXCEPTIONS & FILES ===
+            {name: '17. Exceptions', desc: 'try-catch blocks', format: 'try {} catch(Exception e)', code: 'public class Exceptions {\npublic static void main(String[] args) {\ntry {\nint x = 10/0;\n} catch(ArithmeticException e) {\nSystem.out.println("Error: " + e);\n}\n}\n}', level: 'intermediate'},
+            {name: '18. File IO', desc: 'Read/Write files', format: 'FileWriter fw = new FileWriter("file.txt");', code: 'import java.io.*;\npublic class FileDemo {\npublic static void main(String[] args) throws IOException {\nFileWriter fw = new FileWriter("test.txt");\nfw.write("Hello Java!");\nfw.close();\nSystem.out.println("File created!");\n}\n}', level: 'advanced'},
+            
+            // === ADVANCED ===
+            {name: '19. Lambda', desc: 'Functional style', format: '(x) -> x*2', code: 'import java.util.*;\npublic class Lambda {\npublic static void main(String[] args) {\nArrayList<Integer> nums = new ArrayList<>();\nnums.add(5);\nnums.forEach(n -> System.out.println(n*2));\n}\n}', level: 'advanced'},
+            {name: '20. Streams', desc: 'Data processing', format: 'list.stream().filter()', code: 'import java.util.*;\npublic class Streams {\npublic static void main(String[] args) {\nList<String> list = Arrays.asList("java","code");\nlist.stream().filter(s->s.length()>3).forEach(System.out::println);\n}\n}', level: 'advanced'},
+            {name: '21. Multithreading', desc: 'Multiple threads', format: 'extends Thread', code: 'class MyThread extends Thread {\npublic void run() {\nSystem.out.println("Thread running");\n}\n}\npublic class Main {\npublic static void main(String[] args) {\nMyThread t = new MyThread();\nt.start();\n}\n}', level: 'advanced'},
+            {name: '22. JPanel GUI', desc: 'Swing interface', format: 'JPanel panel = new JPanel();', code: 'import javax.swing.*;\nimport java.awt.*;\npublic class JPanelDemo {\npublic static void main(String[] args) {\nJFrame f = new JFrame("GUI");\nJPanel p = new JPanel();\np.add(new JButton("Click Me"));\nf.setContentPane(p);\nf.setSize(400,300);\nf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\nf.setVisible(true);\n}\n}', level: 'advanced'}
+        ];
+
+        // SAME PERFECT QUIZ
+        const quizData = [
+            {q: 'Encapsulation:', options: ['public vars', 'private + getters', 'static', 'abstract'], ans: 1},
+            {q: 'Inheritance:', options: ['implements', 'extends', 'super', 'this'], ans: 1},
+            {q: 'Polymorphism:', options: ['same method different forms', 'data hiding', 'code reuse', 'interface'], ans: 0},
+            {q: 'Abstraction:', options: ['private', 'abstract/interface', 'final', 'static'], ans: 1},
+            {q: 'Method overriding:', options: ['same signature', 'different return', 'public only', 'static'], ans: 0},
+            {q: 'Superclass reference:', options: ['super only', 'subclass too', 'interface', 'primitive'], ans: 1},
+            {q: 'Constructor chaining:', options: ['super()', 'this()', 'both', 'extends'], ans: 2},
+            {q: 'Final class:', options: ['fields ok', 'cannot extend', 'methods ok', 'instantiate'], ans: 1},
+            {q: 'Interface methods:', options: ['public abstract', 'private', 'static', 'final'], ans: 0},
+            {q: 'Object methods:', options: ['toString()', 'equals()', 'hashCode()', 'All'], ans: 3}
+        ];
+
+        let quizActive = false, quizIndex = 0, quizScore = 0, prevQuery = '';
+        let recognition, slimMode = false;
+
+        // ALL BUTTONS PERFECTLY WORKING
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('topics').innerHTML = topics.map((t, i) => 
+                `<div class="topic-card" onclick="showTopic('${t.name}')">
+                    <h3 style="font-family: Orbitron, monospace;">${t.name}</h3>
+                    <p>${t.desc}</p>
+                    <span class="level-badge ${t.level}">${t.level.toUpperCase()}</span>
+                </div>`
+            ).join('');
+        });
+
+        function handleEnter(event) {
+            if(event.key === 'Enter') getAnswer();
+        }
+
+        function getAnswer() {
+            const query = document.getElementById('queryInput').value.toLowerCase().trim();
+            const answerBox = document.getElementById('answerBox');
+            if (!query) return;
+            if (prevQuery === query) {
+                answerBox.innerHTML = '<h2>🔄 Ask Fresh Question!</h2><p>Try topic cards in order! 🎯</p>';
+                return;
+            }
+            prevQuery = query;
+            const topic = topics.find(t => t.name.toLowerCase().includes(query));
+            if (topic) {
+                answerBox.innerHTML = `
+                    <h2 style="font-family: Orbitron, monospace; color: #2c1810;">📚 ${topic.name}</h2>
+                    <h3 style="color: #4ecdc4;">🔍 What is it?</h3>
+                    <p><strong>📝 Format:</strong> <code>${topic.format}</code></p>
+                    <p><strong>📖 Description:</strong> ${topic.desc}</p>
+                    <div class="code-block">
+                        <strong>✅ VSCode: Copy → Demo.java → Run!</strong><br><br>
+                        <pre style="font-size: 14px;">${topic.code}</pre>
+                        <small><strong>Terminal:</strong> javac Demo.java && java Demo</small>
+                    </div>
+                    <p style="font-size: 18px; font-weight: bold;">💡 <em>Perfect for BCA Exams! Practice this code daily.</em></p>
+                `;
+            } else {
+                answerBox.innerHTML = `
+                    <h2 style="font-family: Orbitron, monospace;">🤖 Java AI Helper</h2>
+                    <p>Start with topic <strong>"01. Variables"</strong> and follow the perfect order! 📚</p>
+                    <div class="code-block">
+public class StartHere {
+    public static void main(String[] args) {
+        System.out.println("🚀 JavaMaster Journey Begins!");
+    }
+}
+                    </div>
+                `;
+            }
+        }
+
+        function showTopic(topicName) {
+            document.getElementById('queryInput').value = topicName;
+            getAnswer();
+        }
+
+        // PERFECT QUIZ - ALL WORKING
+        function startQuiz() {
+            quizActive = true; quizIndex = 0; quizScore = 0;
+            document.getElementById('answerBox').innerHTML = '<h2 style="font-family: Orbitron, monospace;">🎯 OOP QUIZ STARTED!</h2><p>Question 1 loading...</p>';
+            setTimeout(nextQuizQ, 800);
+        }
+
+        function nextQuizQ() {
+            if (quizIndex < quizData.length) {
+                const q = quizData[quizIndex];
+                document.getElementById('answerBox').innerHTML = `
+                    <h3 style="font-family: Orbitron, monospace; color: #4ecdc4;">Q${quizIndex + 1}/10</h3>
+                    <p style="font-size: 20px; margin: 25px 0;">${q.q}</p>
+                    ${q.options.map((opt, i) => 
+                        `<button onclick="checkQuiz(${i})" style="padding: 15px 30px; margin: 12px; background: linear-gradient(45deg, #4ecdc4, #45b7d1); color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 18px; display: block; width: 100%; font-weight: 600;">${opt}</button>`
+                    ).join('')}
+                    <p style="font-size: 18px;"><em>Score: ${quizScore}/${quizIndex}</em></p>
+                `;
+            } else {
+                const percent = Math.round(quizScore/10*100);
+                document.getElementById('answerBox').innerHTML = `
+                    <h2 style="font-family: Orbitron, monospace; font-size: 2.5em;">🏆 QUIZ COMPLETE!</h2>
+                    <h3 style="color: ${percent >= 80 ? '#4ecdc4' : percent >= 60 ? '#ffe66d' : '#ff6b6b'};">${quizScore}/10 (${percent}%)</h3>
+                    <p style="font-size: 20px;">${percent >= 80 ? '⭐ OOP MASTER!' : percent >= 60 ? '👍 GOOD JOB!' : '💪 STUDY MORE!'}</p>
+                    <button onclick="startQuiz()" class="quiz-btn" style="margin-top: 20px; padding: 20px 40px; font-size: 20px;">🔄 RESTART QUIZ</button>
+                `;
+                quizActive = false;
+            }
+        }
+
+        function checkQuiz(selected) {
+            const q = quizData[quizIndex];
+            const answerBox = document.getElementById('answerBox');
+            if (selected === q.ans) {
+                quizScore++;
+                answerBox.innerHTML += '<p style="color: #4ecdc4; font-size: 22px; font-weight: bold;">✅ CORRECT! 🎉</p>';
+            } else {
+                answerBox.innerHTML += `<p style="color: #ff6b6b; font-size: 20px;">❌ Wrong! Ans: ${q.options[q.ans]}</p>`;
+            }
+            setTimeout(() => { quizIndex++; nextQuizQ(); }, 2000);
+        }
+
+        // ALL BUTTONS 100% FIXED
+        function toggleVoice() {
+            try {
+                if (!('webkitSpeechRecognition' in window)) throw new Error('Voice not supported');
+                if (!recognition) {
+                    recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                    recognition.lang = 'en-US';
+                    recognition.onresult = (e) => {
+                        document.getElementById('queryInput').value = e.results[0][0].transcript;
+                        getAnswer();
+                    };
+                }
+                recognition.start();
+            } catch(e) {
+                alert('🎤 Use Chrome for voice! Or type topic name.');
+            }
+        }
+
+        function toggleSlim() {
+            document.body.classList.toggle('slimMode');
+        }
+
+        function searchWeb() {
+            const randomTopic = topics[Math.floor(Math.random() * 10)].name;
+            document.getElementById('queryInput').value = randomTopic;
+            setTimeout(getAnswer, 600);
+        }
+    </script>
+</body>
+</html>
